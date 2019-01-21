@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color:azure;
+}
+
+html, body, .container { 
+  width: 100%; height: 100%; padding: 0; margin: 0;
+  background: #4dd0e1;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333; 
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+
+.subnav .subnavbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .subnav:hover .subnavbtn {
+  background-color: red;
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: lavender;
+  width: 50%;
+  z-index: 1;
+}
+
+.subnav-content a {
+  float: left;
+  color: black;
+  text-decoration: none;
+}
+
+.subnav-content a:hover {
+  background-color: #eee;
+  color: black;
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+}
+
+#test:empty{
+
+width:50%;
+height:50%;
+background-color:yellow}
+
+table,tr,td,th {
+
+  border: 2px solid grey;
+  empty-cells: hide;
+  font-weight:bold;
+  height:15px;
+  
+  
+}
+
+table{width:40%;}
+  
+  #TableHead{
+  height:50px;
+  font-weight: 900;
+  color:black;
+  font-size:25px;
+  background-color:azure;}
+tr:hover {background-color: white;}
+
+.inner-box, .outer-box {
+  background: #aed581;
+  border-radius: 0.1rem;
+  color: #fefafe;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 80%;
+}
+.outer-box {
+  padding-top: 10px;
+  background: #BA68C8;
+  width: 90%;
+}
+
+input, select {
+  margin-bottom: 1rem;
+}
+select, input {
+  background: #fefefe;
+  border-radius: 0.2rem;
+  border-width: 0;
+  padding: 0.25rem 0.33rem;
+  font-size: 1.1rem;
+}
+.bubble {
+  position: absolute;
+  left: 4.5rem;
+  top: 1.2rem;
+  background: #fefefe;
+  border-bottom-right-radius: 25%;
+  border-top-right-radius: 25%;
+  border-top-left-radius: 25%;
+  transform: rotate(-4deg);
+  padding: 0.9rem;
+}
+.bubble::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  margin-left: 0.7rem;
+  margin-top: 0rem;
+  width: 1px;
+  height: 1px;
+  border-bottom: 32px solid #fefefe;
+  border-left: 10px solid #fefefe;
+  border-top: 61px solid #0000;
+  border-right: 31px solid #0000;
+  transform: rotate(93deg);
+}
+
+.coord-input {
+  width: 30%;
+  min-width: 100px;
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<div class="navbar">
+  
+  <div class="subnav">
+    <button class="subnavbtn">ORDERS <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a onClick="test.js">Display</a>
+      <a id="InsertOrder"  onclick="window.location.href = 'salesinsert.html';">Insert</a>
+     
+        
+      <a href="#update">Update</a>
+      <a href="#delete">Delete</a>
+    </div>
+  </div> 
+  <div class="subnav">
+    <button class="subnavbtn">CUSTOMERS <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a onClick="displayCustomer">Display Customer</a>
+      
+    </div>
+  </div> 
+  <div class="subnav">
+    <button class="subnavbtn">PRODUCTS <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a onClick="displayProduct">Display Product</a>
+      
+    </div>
+  </div>
+  </div>
+  
+  
+  
+  <section id="main" class="container">
+      
+      
+        
+        <section id="results">
+          
+        </section>
+      </div>
+      
+    </section>
+    
+    
+    <script src="test.js"></script>
+
+
+<script type="text/javascript">
+      
+      function OrderDisplay(){
+    	debugger;
+    	
+    	
+    	
+        
+    	
+    	var break1=document.createElement("BR");
+    	var break2=document.createElement("BR");
+    	document.body.appendChild(break1);
+    	document.body.appendChild(break2);
+    	
+    	
+    	var table = document.createElement("TABLE");
+  	  table.setAttribute("id", "myTable");
+  	  document.body.appendChild(table);
+
+  	  var header = table.createTHead();
+  	  
+  	  var row = header.insertRow(0);
+  	  row.setAttribute("id","TableHead")
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        
+      cell1.innerHTML = "ORDER ID";
+        cell2.innerHTML = "CUSTOMER ID";
+        cell3.innerHTML="PRODUCT CODE";
+        cell4.innerHTML="QUANTITY";
+        cell5.innerHTML="TOTAL PRICE";
+  	 
+        var xmlhttp = new XMLHttpRequest();
+  	 
+  	xmlhttp.onreadystatechange = function()
+  	{
+  	    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+  	    {
+  	        //Use parse() method to convert JSON string to JSON object
+  	        //console.log(responseText);
+  	        
+  	        
+  	        var jsonobj = JSON.parse(this.responseText);
+  	    	//document.getElementById("allcustomer").innerHTML = this.responseText;
+  	    	
+  	    	for (let i = 0; i < jsonobj.length; i++) {
+  	        const item=jsonobj[i];
+  	     
+  	        var table = document.getElementById("myTable");
+  	        
+  	        
+  	        var row = table.insertRow(-1);
+  	        var cell1 = row.insertCell(0);
+  	        var cell2 = row.insertCell(1);
+  	        var cell3 = row.insertCell(2);
+  	      var cell4 = row.insertCell(3);
+  	    var cell5 = row.insertCell(4);
+  	        
+  	      cell1.innerHTML = item.orderid;
+  	        cell2.innerHTML = item.customer.id;
+  	        cell3.innerHTML=item.product.pcode;
+  	      cell4.innerHTML=item.quantity;
+  	    cell5.innerHTML=item.totalprice;
+  	    	}
+  	        
+  	       // document.getElementById("list").innerhtml = item.id;
+  	    	
+  	    	
+  	    }
+  	};
+  	 
+  	xmlhttp.open("GET", "http://localhost:8080/sales/getall", true);
+  	 
+  	xmlhttp.send();
+  }
+      
+      
+      
+      
+      function displayCustomer(){
+    	  
+    	  
+    	  debugger;
+      	
+          
+     	 var table = document.createElement("TABLE");
+     	  table.setAttribute("id", "myTable");
+     	  document.body.appendChild(table);
+
+     	  var header = table.createTHead();
+     	  
+     	  var row = header.insertRow(0);
+     	  row.setAttribute("id","TableHead")
+	        var cell1 = row.insertCell(0);
+	        var cell2 = row.insertCell(1);
+	        var cell3 = row.insertCell(2);
+	        
+	      cell1.innerHTML = "ID";
+	        cell2.innerHTML = "NAME";
+	        cell3.innerHTML="PHONE";
+     	 
+	        var xmlhttp = new XMLHttpRequest();
+     	 
+     	xmlhttp.onreadystatechange = function()
+     	{
+     	    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+     	    {
+     	        //Use parse() method to convert JSON string to JSON object
+     	        //console.log(responseText);
+     	        
+     	        
+     	        var jsonobj = JSON.parse(this.responseText);
+     	    	//document.getElementById("allcustomer").innerHTML = this.responseText;
+     	    	
+     	    	for (let i = 0; i < jsonobj.length; i++) {
+     	        const item=jsonobj[i];
+     	        var table = document.getElementById("myTable");
+     	        
+     	        
+     	        var row = table.insertRow(-1);
+     	        var cell1 = row.insertCell(0);
+     	        var cell2 = row.insertCell(1);
+     	        var cell3 = row.insertCell(2);
+     	        
+     	      cell1.innerHTML = item.id;
+     	        cell2.innerHTML = item.name;
+     	        cell3.innerHTML=item.phone
+     	    	}
+     	        
+     	       // document.getElementById("list").innerhtml = item.id;
+     	    	
+     	    	
+     	    }
+     	};
+     	 
+     	xmlhttp.open("GET", "http://localhost:8080/customer/getall", true);
+     	 
+     	xmlhttp.send();
+     }
+      
+      
+      
+      
+      function displayProduct(){
+    	  
+    	  debugger;
+      	
+          
+     	 var table = document.createElement("TABLE");
+     	  table.setAttribute("id", "myTable");
+     	  document.body.appendChild(table);
+
+     	  var header = table.createTHead();
+     	  
+     	  var row = header.insertRow(0);
+     	  row.setAttribute("id","TableHead")
+	        var cell1 = row.insertCell(0);
+	        var cell2 = row.insertCell(1);
+	        var cell3 = row.insertCell(2);
+	      var cell4 = row.insertCell(3);
+	        
+	      cell1.innerHTML = "PRODUCT CODE";
+	        cell2.innerHTML = "PRODUCT NAME";
+	        cell3.innerHTML="DESCRIPTION";
+	      cell4.innerHTML="PRICE";
+     	 
+	        var xmlhttp = new XMLHttpRequest();
+     	 
+     	xmlhttp.onreadystatechange = function()
+     	{
+     	    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+     	    {
+     	        //Use parse() method to convert JSON string to JSON object
+     	        //console.log(responseText);
+     	        
+     	        
+     	        var jsonobj = JSON.parse(this.responseText);
+     	    	//document.getElementById("allcustomer").innerHTML = this.responseText;
+     	    	
+     	    	for (let i = 0; i < jsonobj.length; i++) {
+     	        const item=jsonobj[i];
+     	        var table = document.getElementById("myTable");
+     	        
+     	        
+     	        var row = table.insertRow(-1);
+     	        var cell1 = row.insertCell(0);
+     	        var cell2 = row.insertCell(1);
+     	        var cell3 = row.insertCell(2);
+     	        var cell4 = row.insertCell(3);
+     	        
+     	      cell1.innerHTML = item.pcode;
+     	        cell2.innerHTML = item.pname;
+     	        cell3.innerHTML=item.description;
+     	        cell4.innerHTML=item.price;
+     	    	}
+     	        
+     	       // document.getElementById("list").innerhtml = item.id;
+     	    	
+     	    	
+     	    }
+     	};
+     	 
+     	xmlhttp.open("GET", "http://localhost:8080/product/getall", true);
+     	 
+     	xmlhttp.send();
+     }
+ 
+ 
+ 
+      
+      
+      
+      
+      
+      
+
+      
+      </script>
+
+</body>
+</html>
